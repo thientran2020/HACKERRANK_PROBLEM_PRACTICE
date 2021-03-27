@@ -97,6 +97,27 @@ def rotateMatrix(mat):
     return mat
 
 
+# Special String Again HackerRank
+def substrCount(n, s):
+    i = 0
+    sList = []
+    while i < n:
+        j = i+1
+        while j < n and s[j] == s[i]:
+            j += 1
+        sList.append([s[i], j - i])
+        i = j
+
+    count = 0
+    for pair in sList:
+        count += pair[1] * (pair[1] + 1) // 2
+
+    for i in range(1, len(sList) - 1):
+        if sList[i - 1][0] == sList[i+1][0] and sList[i][1] == 1:
+            count += min(sList[i-1][1], sList[i+1][1])
+    return count
+
+
 def main():
     # print(isUnique("Thien Y Tr"))
     # print(isPermutation("123456709", "901476532"))
